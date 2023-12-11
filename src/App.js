@@ -1,6 +1,7 @@
 import './App.css';
 import Todo from './Todo';
 import React, { useState } from "react";
+import { List, Paper } from "@mui/material";
 
 function App() {
   const [items, setItems] = useState([
@@ -16,14 +17,16 @@ function App() {
     },
   ]);
 
-  let todoItems =
-    items.length > 0 && items.map((item) => <Todo item={item} key={item.id} />);
-
-  return (
-    <div className="App">
-      {todoItems}
-    </div>
+  let todoItems = items.length > 0 && (
+    <Paper style={{ margin: 16 }}>
+      <List>
+        {items.map((item) => (
+          <Todo item={item} key={item.id} />
+        ))}
+      </List>
+    </Paper>
   );
+  return <div className="App">{todoItems}</div>;
 }
 
 export default App;
