@@ -17,6 +17,14 @@ function App() {
       done: true
     },
   ]);
+  
+  const addItem = (item) => {
+    item.id = "ID-" + items.length; // key를 위한 id
+    item.done = false; // done 초기화
+    // 업데이트는 반드시 setItems로 하고 새 배열을 만들어야 한다.
+    setItems([...items, item]);
+    console.log("items: ", items);
+  };
 
   let todoItems = items.length > 0 && (
     <Paper style={{ margin: 16 }}>
@@ -27,12 +35,12 @@ function App() {
       </List>
     </Paper>
   );
-  return <div className="App">
+  return (<div className="App">
     <Container maxWidth="md">
-      <AddTodo />
+      <AddTodo addItem={addItem} />
       <div className="TodoList">{todoItems}</div>
     </Container>
-  </div>;
+  </div>);
 }
 
 export default App;
